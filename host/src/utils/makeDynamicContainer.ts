@@ -13,6 +13,8 @@ export const makeDynamicContainer = ({
     global,
     componentName,
 }: DynamicContainerParams) => {
+    console.log(`IS SERVER: ${String(isServer)}`);
+
     return injectScript({
         global: global,
         url: `${url}/_next/static/${

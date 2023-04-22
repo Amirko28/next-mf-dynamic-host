@@ -7,9 +7,9 @@ import { lazy } from "react";
 const DynamicTheOtherSide = lazy(() =>
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     makeDynamicContainer({
-        global: "remote",
-        url: "http://localhost:3001",
-        componentName: "./Div",
+        global: "header",
+        url: "http://localhost:3002",
+        componentName: "./Header",
     })
 );
 
@@ -30,7 +30,6 @@ export const getServerSideProps = async (
 };
 
 const Home: NextPage = () => {
-    console.log(DynamicTheOtherSide);
     return (
         <>
             <Head>

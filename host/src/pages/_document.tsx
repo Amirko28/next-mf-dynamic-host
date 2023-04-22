@@ -1,3 +1,4 @@
+import { revalidate } from "@module-federation/nextjs-mf/utils";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import type { DocumentContext, DocumentInitialProps } from "next/document";
 
@@ -13,6 +14,13 @@ export default class CustomDocument extends Document {
             });
 
         const intialProps = await Document.getInitialProps(ctx);
+
+        ctx?.res?.on("finish", () => {
+            // eslint-disable-next-line @typescript-eslint/no-floating-promises
+            revalidate().then((shouldUpdate) => {
+                console.log("finished sending response", shouldUpdate);
+            });
+        });
 
         return { ...intialProps };
     }
